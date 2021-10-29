@@ -10,7 +10,6 @@ import { pageSize, productsUrl } from './shared/constants';
 /* all http request should be in a http service and you should just call the functions in the components that needs it */
 
 
-
 export const getCompleteStock = async (pageNumber=1, numOfProducts= null) => {
   try {
     return await axios.get(productsUrl,{ params: { pageNumber: pageNumber, pageSize: pageSize, numOfProducts: numOfProducts}});

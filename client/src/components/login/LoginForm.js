@@ -41,9 +41,12 @@ export default function LoginForm({ isManager }) {
       const user = jwtDecode(jwt); //get user from decoding JWT
 
       if (user) { //user exist
-        if (isManager && user.isAdmin) history.push('/catalog', { manager: 'Manager' }); //enter as a manager if you are the manager        
-        else if (isManager && !user.isAdmin) alertAccessDenied("userName or password is incorrect"); //enter as a manager but you are a regular user
-        else history.push('/catalog', { userMember: username, userData: user });  //enter as a user (event if you are manager)     
+        //enter as a manager if you are the manager  
+        if (isManager && user.isAdmin) history.push('/catalog', { manager: 'Manager' });  
+        //enter as a manager but you are a regular user
+        else if (isManager && !user.isAdmin) alertAccessDenied("userName or password is incorrect"); 
+        //enter as a user (event if you are manager)  
+        else history.push('/catalog', { userMember: username, userData: user });     
       }
     } catch (error) {
       alertAccessDenied(error); //not even a user

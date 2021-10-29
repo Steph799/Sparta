@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   price: reqNum,
   items: { type: Number, min: 0, validate: { validator: Number.isInteger, message: itemsMessage, }, required: true },
   rate: { type: Number, min: 0, max: maxRate, required: true },
-  image: { type: String, required: false },
+  image: { type: String, required: false }
 });
 
 module.exports = Product = mongoose.model('Product', productSchema);

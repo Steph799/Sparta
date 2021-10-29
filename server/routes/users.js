@@ -61,7 +61,7 @@ router.delete('/:id', [userAuth, admin], async (req, res) => {
     if (!isObjectIdValid) return res.status(400).send(userNotFound);
 
     // Check if user exists
-    const isExists = User.exists({ _id: reqId }); //and not req.params.id?
+    const isExists = User.exists({ _id: reqId }); 
     if (!isExists) return res.status(400).send(idNotFound);
 
     await User.remove({ _id: reqId });

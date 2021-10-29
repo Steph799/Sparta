@@ -16,7 +16,7 @@ export const findMatch = async (searchValue, currentPage = 1) => {
 }
 
 function SearchField({ setFilteredStock, inputRef, searchValue, setSearchValue, setNumOfProducts, setSortByInput, setPrevInputValue,
-   setPage }) { //delete sort by input (redundant here)
+   setPage }) { 
   const classes = useStyles();
   const filterByCurrentValues = async () => currentValues ? await includeFilters(currentIndex) : await noFilters(currentIndex);
 

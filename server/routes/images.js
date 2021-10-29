@@ -16,7 +16,7 @@ router.post('/upload', (req, res) => {
     
         if (!allowedFormats.includes(format[1])) return res.status(400).send(wrongImgFormat);
      
-        // Check the size of the image not ove then 1.5 MB
+        // Check the size of the image not more then 1.5 MB
         if (file.size >= maxSize) return res.status(400).send(exceedingSizeError);
       
         file.mv(`${path}/${file.name}`, async err => {

@@ -83,12 +83,12 @@ router.delete('/:id', [userAuth, admin], async (req, res) => {
     if (!isObjectIdValid) return res.status(400).send(notValidProduct);
 
     // Check if product exists
-    const isExists = Product.exists({ _id: reqId }); //and not req.params.id?
+    const isExists = Product.exists({ _id: reqId }); 
     if (!isExists) return res.status(400).send(idNotFound);
 
     await Product.deleteOne({ _id: reqId })
 
-    return res.status(200).send(successfulProductDelete);//add res.send(filtered)
+    return res.status(200).send(successfulProductDelete);
   } catch (error) {
     res.status(500).send(`${processFailed} ${error.message}`);
   }
