@@ -4,6 +4,7 @@ import MyMenu from './menu/MyMenu';
 import DisplayProducts from './DisplayProducts';
 import axios from 'axios';
 import { pageSize, productsUrl } from './shared/constants';
+import jwtDecode from 'jwt-decode';
 
 /* axios should be a file that handle all http request / response and error */
 /* also learn about interceptor */
@@ -27,13 +28,14 @@ function Catalog(props) {
   const [user, setUser] = useState(props.history.location.state);
   const [page, setPage] = useState(1);
 
-
-  const onSelect = () =>{
-    setSortByInput(false)
-    return searchValue && setSearchValue('');
-  } 
-
+ 
   useEffect( () => {
+    if (!props.location.state && localStorage.getItem('token')) { //in a case of redirecting from "/" with a user inside
+      const token = localStorage.getItem('token')
+      const currentUser = jwtDecode(token) 
+      currentUser.isAdmin ? setUser({ manager: 'Manager' }) : setUser({userMember: currentUser.userName, userData: currentUser});
+    }
+
     async function fetchMyApi(){
       const stock = await getCompleteStock();
       setFilteredStock(stock.data.products);
@@ -41,6 +43,12 @@ function Catalog(props) {
     }
     fetchMyApi()
   }, []);
+
+
+  const onSelect = () => {
+    setSortByInput(false)
+    return searchValue && setSearchValue('');
+  }
 
   return (
     <div>

@@ -42,11 +42,11 @@ export default function LoginForm({ isManager }) {
 
       if (user) { //user exist
         //enter as a manager if you are the manager  
-        if (isManager && user.isAdmin) history.push('/catalog', { manager: 'Manager' });  
+        if (isManager && user.isAdmin) history.replace('/catalog', { manager: 'Manager' });
         //enter as a manager but you are a regular user
         else if (isManager && !user.isAdmin) alertAccessDenied("userName or password is incorrect"); 
         //enter as a user (event if you are manager)  
-        else history.push('/catalog', { userMember: username, userData: user });     
+        else history.replace('/catalog', { userMember: username, userData: user });
       }
     } catch (error) {
       alertAccessDenied(error); //not even a user

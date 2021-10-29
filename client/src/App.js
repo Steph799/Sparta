@@ -14,7 +14,6 @@ function App() {
   return (
     <div className="App">
       {/* Check React Routing V6 */}
-      {/* Learn more about the exact key */}
       {/* All the routing path should be in a urlPath file in the folder const */}
       
       <Switch>
@@ -28,7 +27,8 @@ function App() {
         <Route path="/adduser" render={(props) => <UserForm {...props} />} />
         <Route path="/edituser" render={(props) => <UserForm {...props} />} />
         <Route path="/notfound" render={(props) => <NotFound {...props} />}  />
-        <Redirect to={{ pathname: "/notfound", state: localStorage.getItem('token')}} />
+        <Redirect from="/" exact to= "/catalog" />
+        <Redirect to="/notfound" />
       </Switch>
     </div>
   );
