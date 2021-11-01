@@ -1,4 +1,4 @@
-# Sparta
+# Sparta (beta release)
 Digital sport shop
 
 Follow the steps in order to run the application:
